@@ -16,7 +16,7 @@ function LiquidGlassInput({
   value,
   onChange,
   onSend,
-  placeholder = "发消息或按住说话",
+  placeholder = "发消息",
   disabled = false,
   children,
   className,
@@ -29,35 +29,31 @@ function LiquidGlassInput({
     if (!el) return
 
     el.style.height = "auto"
-    el.style.height = `${Math.min(el.scrollHeight, 160)}px`
+    el.style.height = `${Math.min(el.scrollHeight, 120)}px`
   }, [value])
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault()
-      if (value.trim()) {
+      if (value.trim() && !disabled) {
         onSend()
       }
     }
   }
 
   return (
-    <div
-      className={cn(
-        "fixed bottom-0 left-0 right-0 z-50 flex justify-center p-3 sm:p-4 pointer-events-none",
-        className
-      )}
-    >
+    <div className={cn("relative z-10 w-full px-3 pb-4 pt-2 sm:px-4", className)}>
       <div
         className={cn(
           "liquid-glass liquid-glass-shimmer",
-          "pointer-events-auto w-full max-w-3xl rounded-[2.25rem] p-2 sm:p-3",
-          "transition-shadow duration-200 focus-within:ring-2 focus-within:ring-ring/40"
+          "mx-auto w-full max-w-2xl rounded-[1.75rem] p-1.5 sm:p-2",
+          "transition-all duration-200",
+          "focus-within:shadow-[0_12px_40px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.04)]"
         )}
       >
-        <div className="relative flex items-end gap-2 sm:gap-3">
+        <div className="relative z-[2] flex items-end gap-1.5 sm:gap-2">
           {leftSlot ? (
-            <div className="flex shrink-0 items-center pb-1.5" aria-hidden={false}>
+            <div className="flex shrink-0 items-center pb-1.5 pl-1">
               {leftSlot}
             </div>
           ) : null}
@@ -72,16 +68,15 @@ function LiquidGlassInput({
             rows={1}
             aria-label={placeholder}
             className={cn(
-              "flex-1 min-h-11 max-h-40 resize-none bg-transparent py-3 px-2",
-              "text-base leading-relaxed text-foreground placeholder:text-muted-foreground",
-              "outline-none focus:outline-none caret-ring",
-              "disabled:cursor-not-allowed disabled:opacity-60",
-              "selection:bg-ring/30"
+              "flex-1 min-h-[2.5rem] max-h-32 resize-none bg-transparent py-2.5 px-1",
+              "text-[15px] leading-relaxed text-foreground placeholder:text-muted-foreground/70",
+              "outline-none focus:outline-none",
+              "disabled:cursor-not-allowed disabled:opacity-50"
             )}
           />
 
           {rightSlot ? (
-            <div className="flex shrink-0 items-center pb-1.5" aria-hidden={false}>
+            <div className="flex shrink-0 items-center pb-1.5 pr-1">
               {rightSlot}
             </div>
           ) : null}
