@@ -17,10 +17,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "学伴小智 | 高中生AI学习伙伴",
-  description:
-    "为高中生打造的智能学习伙伴，探索间隔重复、主动回忆、费曼技巧等新时代学习方法，陪你制定计划、答疑解惑、保持动力。",
-  keywords: ["高中生", "学习方法", "AI学习伙伴", "间隔重复", "主动回忆", "费曼技巧"],
+  title: "AI 学习助手",
+  description: "一个简洁的 AI 对话学习助手。",
 };
 
 export default function RootLayout({

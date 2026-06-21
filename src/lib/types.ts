@@ -15,11 +15,20 @@ export interface LearningMethod {
   icon: string;
 }
 
+export type ChatMode = "quick" | "deep";
+
 export interface ChatMessage {
   id: string;
   role: "user" | "agent";
   content: string;
   timestamp: Date;
+}
+
+export interface Conversation {
+  id: string;
+  title: string;
+  messageIds: string[];
+  updatedAt: Date;
 }
 
 export interface StudyPlanItem {
